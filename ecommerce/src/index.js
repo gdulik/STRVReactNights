@@ -1,17 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
 
 const render = () =>
-	ReactDOM.render(
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>,
-		document.getElementById('root')
-	);
+  // eslint-disable-next-line react/no-render-return-value
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root'),
+  )
+
+render()
 
 if (module.hot) {
-	module.hot.accept('./App', render);
+  module.hot.accept('./App', () => render())
 }
-
-render();
