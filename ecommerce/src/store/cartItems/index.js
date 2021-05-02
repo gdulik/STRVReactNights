@@ -1,4 +1,4 @@
-import { ADD_PRODUCT } from './actions'
+import { ADD_PRODUCT, REMOVE_PRODUCT } from './actions'
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
@@ -7,6 +7,9 @@ const reducer = (state = {}, action) => {
         ...state,
         [action.payload]: (state[action.payload] || 0) + 1,
       }
+    case REMOVE_PRODUCT:
+      delete state[action.payload]
+      return { ...state }
     default:
       return state
   }

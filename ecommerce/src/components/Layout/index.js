@@ -2,7 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`padding: 2rem;`
+const Wrapper = styled.div`
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 const Header = styled.header`
   padding: 3rem;

@@ -1,14 +1,6 @@
 import React from 'react'
-import {
-  Wrapper,
-  ImgWrap,
-  Img,
-  TitleWrap,
-  Title,
-  Price,
-  Link,
-  AddButton,
-} from './styled'
+import { Wrapper, ImgWrap, Img, TitleWrap, Title, Price, Link } from './styled'
+import Button from './../../../components/Button'
 
 const Product = ({ node, onAddToCart }) => (
   <Wrapper>
@@ -20,9 +12,7 @@ const Product = ({ node, onAddToCart }) => (
         <Title>{node.name}</Title>
       </TitleWrap>
       <Price>{node.price.formatted_amount}</Price>
-      <AddButton onClick={(evt) => onAddToCart(node.id, evt)}>
-        Add to Card
-      </AddButton>
+      <Button onClick={(evt) => onAddToCart(node.id, evt)}>Add to Card</Button>
     </Link>
   </Wrapper>
 )
