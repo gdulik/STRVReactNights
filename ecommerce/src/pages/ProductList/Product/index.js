@@ -12,7 +12,14 @@ const Product = ({ node, onAddToCart }) => (
         <Title>{node.name}</Title>
       </TitleWrap>
       <Price>{node.price.formatted_amount}</Price>
-      <Button onClick={(evt) => onAddToCart(node.id, evt)}>Add to Card</Button>
+      <Button
+        onClick={(evt) => {
+          evt.preventDefault()
+          onAddToCart(node.id)
+        }}
+      >
+        Add to Card
+      </Button>
     </Link>
   </Wrapper>
 )

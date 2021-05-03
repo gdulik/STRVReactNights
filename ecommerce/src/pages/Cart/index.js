@@ -6,7 +6,7 @@ import Button from '../../components/Button'
 import { H1 } from '../../components/Typography'
 
 import { CartWrapper, ItemWrapper, Item } from './styled'
-import { removeProduct } from '../../store/cartItems/actions'
+import { removeProduct } from '../../store/cart/actions'
 
 class CartView extends Component {
   handleRemoveFromCart = (productId) => {
@@ -19,7 +19,7 @@ class CartView extends Component {
         <H1>Your cart</H1>
         <CartWrapper>
           {this.props.items.map((item) => (
-            <ItemWrapper>
+            <ItemWrapper key={item.product.id}>
               <Item>
                 {item.product.name} - {item.quantity}
               </Item>
@@ -37,8 +37,8 @@ class CartView extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  items: Object.keys(state.cartItems).map((productId) => ({
-    quantity: state.cartItems[productId],
+  items: Object.keys(state.cart).map((productId) => ({
+    quantity: state.cart[productId],
     product: state.products.find((p) => p.id === productId),
   })),
 })

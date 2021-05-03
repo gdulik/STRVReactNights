@@ -1,16 +1,34 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 
-import products from './products'
-import cartItems from './cartItems'
+import products from './products/reducer'
+import cart from './cart/reducer'
 
 const reducer = combineReducers({
   products,
-  cartItems,
+  cart,
 })
+
+const middleware = (store) => (next) => (action) => {
+  const type = action.type
+  const currentState = store.getState()
+  console.group(type)
+  console.log('currentState:', currentState)
+
+  const result = next(action)
+
+  const nextState = store.getState()
+  console.log('nextState:', nextState)
+
+  console.groupEnd()
+  return result
+}
 
 const store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    applyMiddleware(middleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 )
 
 export default store

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import theme from './../../common/theme'
 
-export const ProductWrap = styled.div`
+export const Wrapper = styled.div`
   background-color: ${theme.color.white};
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@ export const ProductWrap = styled.div`
   padding-bottom: 2rem;
 `
 
-export const ImgWrap = styled.div`
+export const ImgWrapper = styled.div`
   height: 16rem;
   display: flex;
   flex-direction: column;
@@ -22,6 +22,8 @@ export const Img = styled.img`
   max-height: 15rem;
   max-width: 100%;
 `
+
+export const DetailsWrapper = styled.div``
 
 export const Price = styled.div`
   color: ${theme.color.red};
