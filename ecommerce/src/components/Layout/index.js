@@ -12,18 +12,29 @@ const Wrapper = styled.div`
 const Header = styled.header`
   padding: 3rem;
   border-bottom: 0.1rem solid gainsboro;
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem;
 `
+
 const StyledLink = styled(Link)`
-  margin-right: 1rem;
+  margin: 1rem;
 `
+
+const HeaderSection = styled.div``
 
 class Layout extends Component {
   render() {
     return (
       <Fragment>
         <Header>
-          <StyledLink to="/">All Products</StyledLink>
-          <StyledLink to="/cart">My Cart</StyledLink>
+          <HeaderSection>
+            <StyledLink to="/">All Products</StyledLink>
+          </HeaderSection>
+          <HeaderSection>
+            <StyledLink to="/cart">My Cart</StyledLink>|
+            <StyledLink to="/signup">Sign Up</StyledLink>
+          </HeaderSection>
         </Header>
         <Wrapper>{this.props.children}</Wrapper>
       </Fragment>
