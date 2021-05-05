@@ -1,6 +1,6 @@
 import { object, string, ref } from 'yup'
 
-const schema = object().shape({
+export const schema = object().shape({
   email: string().email('Email is not valid').required('Email is required'),
   firstName: string(),
   password: string()
@@ -13,5 +13,3 @@ const schema = object().shape({
     .oneOf([ref('password')], 'Passwords must match')
     .required('Must confirm password'),
 })
-
-export default schema

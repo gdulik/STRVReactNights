@@ -3,9 +3,10 @@ import { Field } from 'formik'
 
 import { Wrapper, Label, StyledInput, StyledError } from './styled'
 
-const Input = ({ label, name, type = 'text' }) => (
-  <Field name={name}>
-    {({ field, form }) => {
+export const Input = ({ label, name, type = 'text' }) => (
+  <Field
+    name={name}
+    render={({ field, form }) => {
       const { errors, touched } = form
       const hasError = touched[name] && Boolean(errors[name])
       return (
@@ -16,7 +17,5 @@ const Input = ({ label, name, type = 'text' }) => (
         </Wrapper>
       )
     }}
-  </Field>
+  />
 )
-
-export default Input

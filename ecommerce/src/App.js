@@ -8,6 +8,8 @@ import { ProductList } from './pages/ProductList/'
 import { ProductDetail } from './pages/ProductDetail/'
 import { Cart } from './pages/Cart'
 import { SignUp } from './pages/SignUp'
+import { Account } from './pages/Account'
+import { PrivateRoute } from './components/PrivateRoute'
 import store from './store'
 
 class App extends Component {
@@ -18,8 +20,9 @@ class App extends Component {
           <GlobalStyles />
           <Switch>
             <Route path="/" exact component={ProductList} />
-            <Route path="/cart" exact component={Cart} />
+            <Route path="/cart" component={Cart} />
             <Route path="/signup" exact component={SignUp} />
+            <PrivateRoute path="/account" component={Account} />
             <Route path="/:productId" component={ProductDetail} />
           </Switch>
         </React.Fragment>

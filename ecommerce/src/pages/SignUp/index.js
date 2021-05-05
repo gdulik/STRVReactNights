@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik'
 
+import { createCustomer } from '../../api/customers/create-customer'
 import Layout from '../../components/Layout'
 import { H1 } from '../../components/Typography'
-import Form, { GlobalFormError } from '../../components/Form'
-import Input from '../../components/Input'
+import { Form, GlobalFormError } from '../../components/Form'
+import { Input } from '../../components/Input'
 import Button from '../../components/Button'
-import schema from './schema'
+import { schema } from './schema'
 
 class SignUp extends Component {
   state = {
-    hasSignedUp: false,
     globalError: '',
   }
 
@@ -24,10 +24,8 @@ class SignUp extends Component {
   handleSubmit = async (values, { setSubmitting }) => {
     try {
       setSubmitting(true)
-      // await createCustomer(values)
-      this.setState({
-        hasSignedUp: true,
-      })
+      await createCustomer(values)
+      this.props.history.push('/account')
     } catch (error) {
       this.setState({
         globalError: error.message,
@@ -36,17 +34,11 @@ class SignUp extends Component {
     setSubmitting(false)
   }
 
-  renderSuccess = () => (
-    <Layout>
-      <H1 textAlign="center">You've signed up!</H1>
-    </Layout>
-  )
-
   render() {
-    if (this.state.hasSignedUp) return this.renderSuccess()
+    const { globalError } = this.state
     return (
       <Layout>
-        <H1>SignUp</H1>
+        <H1 textAlign="center">SignUp</H1>
         <Formik
           initialValues={this.initialValues}
           validationSchema={schema}
@@ -54,13 +46,16 @@ class SignUp extends Component {
         >
           {({ handleSubmit, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
+              {Boolean(globalError) && (
+                <GlobalFormError>{globalError}</GlobalFormError>
+              )}
               <Input name="firstName" label="First name" />
-              <Input name="email" label="Email address" type="email" />
-              <Input name="password" label="Password" type="password" />
+              <Input name="email" type="email" label="Email address" />
+              <Input name="password" type="password" label="Password" />
               <Input
                 name="passwordConfirm"
-                label="Password confirmation"
                 type="password"
+                label="Confirm password"
               />
               <Button disabled={isSubmitting}>
                 {isSubmitting ? 'Signing up...' : 'Sign Up'}

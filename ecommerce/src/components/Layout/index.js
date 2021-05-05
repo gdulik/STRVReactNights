@@ -18,7 +18,7 @@ const Header = styled.header`
 `
 
 const StyledLink = styled(Link)`
-  margin: 1rem;
+  margin: 0 1rem;
 `
 
 const HeaderSection = styled.div``
@@ -33,6 +33,7 @@ class Layout extends Component {
           </HeaderSection>
           <HeaderSection>
             <StyledLink to="/cart">My Cart</StyledLink>|
+            <StyledLink to="/account">My Account</StyledLink>|
             <StyledLink to="/signup">Sign Up</StyledLink>
           </HeaderSection>
         </Header>
