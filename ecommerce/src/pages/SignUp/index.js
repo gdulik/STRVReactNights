@@ -7,12 +7,12 @@ import { H1 } from '../../components/Typography'
 import { Form, GlobalFormError } from '../../components/Form'
 import { Input } from '../../components/Input'
 import Button from '../../components/Button'
-import { login } from '../../store/user/actions'
+import * as customerActions from '../../store/customer/actions'
 import { createCustomer } from '../../api/customers/create-customer'
 import { getCustomer } from '../../api/customers/get-customer'
 import { schema } from './schema'
 
-class SignUp extends Component {
+class SignUpPage extends Component {
   state = {
     globalError: '',
   }
@@ -75,9 +75,7 @@ class SignUp extends Component {
 }
 
 const mapDispatchToProps = {
-  login,
+  login: customerActions.login,
 }
 
-const WithConnect = connect(null, mapDispatchToProps)(SignUp)
-
-export { WithConnect as SignUp }
+export const SignUp = connect(null, mapDispatchToProps)(SignUpPage)

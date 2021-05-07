@@ -2,12 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 
 import products from './products/reducer'
 import cart from './cart/reducer'
-import user from './user/reducer'
+import customer from './customer/reducer'
 
 const reducer = combineReducers({
   products,
   cart,
-  user,
+  customer,
 })
 
 const middleware = (store) => (next) => (action) => {
@@ -25,12 +25,13 @@ const middleware = (store) => (next) => (action) => {
   return result
 }
 
-const store = createStore(
-  reducer,
-  compose(
-    applyMiddleware(middleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+export const configureStore = (preloadedState = {}) =>
+  createStore(
+    reducer,
+    preloadedState,
+    compose(
+      applyMiddleware(middleware),
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+        window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
   )
-)
-
-export default store
